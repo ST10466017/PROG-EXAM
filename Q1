@@ -1,0 +1,46 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class ProductSalesTest {
+
+    int[][] productSales = {
+        {300, 150, 700},
+        {250, 200, 600}
+    };
+
+    ProductSales ps = new ProductSales();
+
+    @Test
+    public void CalculateTotalSales_ReturnsTotalSales() {
+        int expected = 2200; // 300 + 150 + 700 + 250 + 200 + 600
+        int actual = ps.TotalSales(productSales);
+        assertEquals(expected, actual, "Total sales should be 2200");
+    }
+
+    @Test
+    public void AverageSales_ReturnsAverageProductSales() {
+        double expected = 2200.0 / 6; // average = 366.67
+        double actual = ps.AverageSales(productSales);
+        assertEquals(expected, actual, 0.01, "Average sales should be 366.67");
+    }
+
+    @Test
+    public void MaxSale_ReturnsMaximumValue() {
+        int expected = 700;
+        int actual = ps.MaxSale(productSales);
+        assertEquals(expected, actual, "Maximum sale should be 700");
+    }
+
+    @Test
+    public void MinSale_ReturnsMinimumValue() {
+        int expected = 150;
+        int actual = ps.MinSale(productSales);
+        assertEquals(expected, actual, "Minimum sale should be 150");
+    }
+}
+public interface IProduct {
+    int TotalSales(int[][] productSales);
+    double AverageSales(int[][] productSales);
+    int MaxSale(int[][] productSales);
+    int MinSale(int[][] productSales);
+}
